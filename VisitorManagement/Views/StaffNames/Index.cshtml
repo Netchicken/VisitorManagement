@@ -1,0 +1,94 @@
+﻿@using System.Collections
+@model IEnumerable<VisitorManagement.Models.StaffNames>
+
+<div id="TopSpacer">
+    <div class="col-md-8 col-md-offset-2 section-title">
+        <h2>Staff Details</h2>
+
+        <a asp-action="Create" class="btn btn-default btn-sm">Create New</a>
+        @*<a asp-action="UpdateStaff" class="btn btn-default btn-sm">Update From text file</a>*@
+        <a asp-action="RemoveDuplicateStaff" class="btn btn-default btn-sm">Remove Duplicate Staff</a>
+        <p></p>
+        @await Html.PartialAsync("~/Views/StaffNames/Filesindex.cshtml")
+        <div class="clearfix"></div>
+        <h5>Top 5 Staff with visitors in Descending order</h5>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Department)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.VisitorCount)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (StaffNames item in (IEnumerable)ViewData["TopStaffList"])
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Department)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VisitorCount)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+
+
+
+        <h2>All Staff</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Department)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Department)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+

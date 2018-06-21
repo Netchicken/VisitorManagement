@@ -1,0 +1,48 @@
+﻿@model VisitorManagement.Models.Visitor
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Visitor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Business)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Business)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateIn)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateIn)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOut)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateOut)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

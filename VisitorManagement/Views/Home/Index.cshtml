@@ -1,0 +1,54 @@
+﻿@using System.Collections
+<!-- Header -->
+<header id="header">
+    <div class="intro text-center">
+        <div class="overlay">
+            <div class="container">
+                <div class="row">
+                    <div class="intro-text">
+                        <h1>Welcome to the <span class="brand">Vision College</span></h1>
+                        <h2>Visitor Management System</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Services Section -->
+<div id="services" class="text-center">
+    <div class="container">
+        <div class="col-md-8 col-md-offset-2 section-title">
+            <h2>Read the Conditions</h2>
+
+            @foreach (var item in (IEnumerable)ViewData["Conditions"])
+            {
+
+                if (item.ToString().Contains("Heading"))
+                {
+                    <div id="team" class="form-group col-xs-12 col-md-12">
+                        <h3>  @item.ToString().Replace("Heading", "")</h3>
+                    </div>
+                }
+                else
+                {
+                    <div class="form-group col-xs-6 col-md-3 text-left">@item.ToString()</div>
+                }
+
+            }
+        </div>
+    </div>
+</div>
+
+<div class="container text-center">
+    @await Html.PartialAsync("~/Views/Visitors/Index.cshtml")
+
+    @await Html.PartialAsync("~/Views/Visitors/Create.cshtml")
+
+</div>
+
+
+
+
+
+

@@ -1,0 +1,44 @@
+﻿@using System.Collections
+@model List<Visitor>
+<div class="container text-center">
+    <div id="TopSpacer" class="overlay">
+        <div class="col-md-8 col-md-offset-2 section-title">
+            <div class="intro-text">
+                <h2>Please Sign Out</h2>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <h3>Visitor Name</h3>
+                        </th>
+                        <th>
+                            <h3>Time Visited</h3>
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Visitor item in ViewData["VisitorLogOut"] as List<Visitor>)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                                @Html.DisplayFor(modelItem => item.LastName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => (DateTime.Now - item.DateIn).Hours)
+                            </td>
+
+                            <td>
+                                <a asp-action="LogOut" asp-route-id="@item.Id">Log Out</a>
+                                @*<input type="submit" asp-action="LogOut" asp-route-id="@item.Id" value="Log Out" class="btn btn-default" />*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

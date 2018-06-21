@@ -1,0 +1,75 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>aspnet-VisitorManagement-E012B99F-34F2-4AC5-A31E-598833B7170A</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Home\index.cshtml" />
+    <Content Remove="Views\Home\IndexBackupTemplate.cshtml" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" PrivateAssets="All" />
+    <PackageReference Include="Modernizr" Version="2.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.2" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Home\IndexBackupTemplate.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="wwwroot\ConditionsForAdmittance.txt" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\less\animated.less" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\less\bordered-pulled.less" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\less\core.less" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\less\fixed-width.less" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\less\font-awesome.less" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\less\icons.less" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\less\larger.less" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\less\list.less" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\less\mixins.less" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\less\path.less" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\less\rotated-flipped.less" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\less\stacked.less" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\less\variables.less" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\scss\font-awesome.scss" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\scss\_animated.scss" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\scss\_bordered-pulled.scss" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\scss\_core.scss" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\scss\_fixed-width.scss" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\scss\_icons.scss" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\scss\_larger.scss" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\scss\_list.scss" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\scss\_mixins.scss" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\scss\_path.scss" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\scss\_rotated-flipped.scss" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\scss\_stacked.scss" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\scss\_variables.scss" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\lib\bootstrap\dist\fonts\fonts\glyphicons-halflings-regular.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\Visitors\Index - Copy.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="VMan.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
