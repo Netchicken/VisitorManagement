@@ -36,7 +36,7 @@ namespace VisitorManagement.Controllers
             List<SelectListItem> Top5Staff = new List<SelectListItem>();
 
 
-            ViewData["Staff"] = ListOfStaff(Top5Staff); ;
+            ViewData["Staff"] = ListOfStaff(Top5Staff);
 
 
             ViewData["Conditions"] = _textFileOperations.LoadConditionsForAcceptanceText();

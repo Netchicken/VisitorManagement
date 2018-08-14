@@ -63,8 +63,10 @@
             //get the id of the returned entry
 
             var ReturnID = $("#NameSelect  option:selected").val();
-            alert(ReturnID);
+            // alert(ReturnID);
 
+            var ID = ReturnID.split(" ");
+            alert(ID[1]);
             //send up the returned ID find the Staff ID for that entry
 
 
@@ -84,10 +86,22 @@
 
                 var staffname = text[3] + " " + text[4];
 
-                // $('#StaffMember').Items.FindByValue(ReturnID).Selected = true;
-
+                //   $('#StaffMember').Items.find(ID[1]).Selected = true;
+                $("#StaffMember").val(ID[1]).selected = true;
             }
         });
+
+        $("#StaffMember").change(function () {
+            //get the id of the returned entry
+
+            var ReturnID = $("#StaffMember  option:selected").val();
+            alert(ReturnID);
+
+            ////var ID = ReturnID.split(" ");
+            ////alert(ID[1]);
+        });
+
+
     </script>
 }
 
