@@ -257,17 +257,18 @@ header .intro-text {
 /* Portfolio Section */
 #portfolio {
 	/*padding: 100px 0;*/
-	background: #053740;
+	/*background: #053740;*/
 }
 
     #portfolio h2 {
         color: rgba(255,255,255,0.8);
     }
     #portfolio h3 {
-        color: #dcf2cc;
-        margin-top: 5px;
-        margin-bottom: 5px;
-        font-size: medium;
+        color: #053740;
+        background-color: #d8edf0;
+        /*margin-top: 5px;
+        margin-bottom: 5px;*/
+        font-size: x-large;
     }
 
 

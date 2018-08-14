@@ -119,7 +119,7 @@ namespace VisitorManagement.Business
             //Gets or sets the absolute path to the directory that contains the web-servable application content files.
             string webRootPath = _environment.WebRootPath;
             //Gets or sets the absolute path to the directory that contains the application content files.
-            string contentRootPath = _environment.ContentRootPath;
+        //    string contentRootPath = _environment.ContentRootPath;
 
             FileInfo filePath = new FileInfo(Path.Combine(webRootPath, "ConditionsForAdmittance.txt"));
 

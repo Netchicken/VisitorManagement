@@ -1,15 +1,25 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
     <UserSecretsId>aspnet-VisitorManagement-E012B99F-34F2-4AC5-A31E-598833B7170A</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <NoWarn>$(NoWarn);NU1605</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
-    <Content Remove="Views\Home\index.cshtml" />
     <Content Remove="Views\Home\IndexBackupTemplate.cshtml" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" PrivateAssets="All" />
+		
+    <PackageReference Include="Modernizr" Version="2.8.3" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0" />
@@ -22,11 +32,10 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.2" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
-  </ItemGroup>
+</ItemGroup>
 
   <ItemGroup>
     <None Include="Views\Home\IndexBackupTemplate.cshtml" />
-    <None Include="Views\Home\Index.cshtml" />
     <None Include="wwwroot\ConditionsForAdmittance.txt" />
     <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\fonts\fontawesome-webfont.svg" />
     <None Include="wwwroot\lib\bootstrap\dist\fonts\font-awesome\fonts\fontawesome-webfont.woff2" />
@@ -61,8 +70,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="Views\Home\Index.cshtml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
     <Content Update="Views\Visitors\Index - Copy.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Update="wwwroot\ConditionsForAdmittance.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
@@ -72,4 +87,17 @@
     </None>
   </ItemGroup>
 
+<ItemGroup>
+    <DotNetCliToolReference Include="Amazon.ElasticBeanstalk.Tools" Version="1.1.3" />
+  </ItemGroup>
+  
+   <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+
+  
+  
+  
 </Project>
+

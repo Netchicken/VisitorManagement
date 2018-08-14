@@ -1,0 +1,20 @@
+﻿{
+  "manifestVersion": 1,
+  "deployments": {
+    "aspNetCoreWeb": [
+      {
+        "name": "VisitorManagement",
+        "parameters": {
+          "appBundle": ".",
+          "iisPath": "/",
+          "iisWebSite": "Default Web Site"
+        },
+        "scripts": {
+          "preInstall": {
+            "file": "SetupScripts/PreInstallSetup.ps1"
+          }
+        }
+      }
+    ]
+  }
+}

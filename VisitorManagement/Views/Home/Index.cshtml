@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="row">
                     <div class="intro-text">
-                        <h1>Welcome to the <span class="brand">Vision College</span></h1>
+                        <h1 style="color:azure">Welcome to <span class="brand">Vision College</span></h1>
                         <h2>Visitor Management System</h2>
                     </div>
                 </div>
@@ -14,20 +14,20 @@
         </div>
     </div>
 </header>
-
 <!-- Services Section -->
 <div id="services" class="text-center">
     <div class="container">
+
+        @await Html.PartialAsync("~/Views/Visitors/Index.cshtml")
         <div class="col-md-8 col-md-offset-2 section-title">
             <h2>Read the Conditions</h2>
-
             @foreach (var item in (IEnumerable)ViewData["Conditions"])
             {
 
                 if (item.ToString().Contains("Heading"))
                 {
                     <div id="team" class="form-group col-xs-12 col-md-12">
-                        <h3>  @item.ToString().Replace("Heading", "")</h3>
+                        <h3> @item.ToString().Replace("Heading", "")</h3>
                     </div>
                 }
                 else
@@ -39,16 +39,56 @@
         </div>
     </div>
 </div>
-
 <div class="container text-center">
-    @await Html.PartialAsync("~/Views/Visitors/Index.cshtml")
-
     @await Html.PartialAsync("~/Views/Visitors/Create.cshtml")
-
 </div>
 
+@section Scripts {
+    <script type="text/javascript">
+
+        $(function () {
+            //var fn = document.getElementsByName("#FirstName");
+            //var ln = document.getElementsByName("#Lastname");
+            //var bus = document.getElementsByName("business");
+            //  alert(fn  + " working");
+
+
+        });
+
+        //https://www.pluralsight.com/guides/asp-net-mvc-populating-dropdown-lists-in-razor-views-using-the-mvvm-design-pattern-entity-framework-and-ajax
+
+        //http://learn.jquery.com/using-jquery-core/faq/how-do-i-get-the-text-value-of-a-selected-option/
+
+        $("#NameSelect").change(function () {
+            //get the id of the returned entry
+
+            var ReturnID = $("#NameSelect  option:selected").val();
+            alert(ReturnID);
+
+            //send up the returned ID find the Staff ID for that entry
 
 
 
+            //get the name of the returned person selected
+            var name = $("#NameSelect  option:selected").text();
+
+            if (name != null) {
+                //   alert(name);
+
+                //split the name up to an array
+                var text = name.split(" ");
+
+                $('#FirstName').val(text[0]);
+                $('#LastName').val(text[1]);
+                $('#Business').val(text[2]);
+
+                var staffname = text[3] + " " + text[4];
+
+                // $('#StaffMember').Items.FindByValue(ReturnID).Selected = true;
+
+            }
+        });
+    </script>
+}
 
 

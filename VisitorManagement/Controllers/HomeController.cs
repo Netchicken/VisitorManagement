@@ -36,48 +36,41 @@ namespace VisitorManagement.Controllers
             List<SelectListItem> Top5Staff = new List<SelectListItem>();
 
 
-            Top5Staff.AddRange(_dataBaseCalls.Top5StaffVisitors()
-
-                .Select(n => new SelectListItem
-                {
-                    Value = n.Id.ToString(),
-                    Text = n.Name + " " + n.Department
-                }).ToList());
-
-            Top5Staff.AddRange(_context.StaffNames
-                 .Select(n => new SelectListItem
-                 {
-                     Value = n.Id.ToString(),
-                     Text = n.Name + " " + n.Department
-                 }).ToList());
-
-            ViewData["Staff"] = Top5Staff;
+            ViewData["Staff"] = ListOfStaff(Top5Staff); ;
 
 
             ViewData["Conditions"] = _textFileOperations.LoadConditionsForAcceptanceText();
 
 
-            var ReturningVisitors = _context.Visitor.OrderBy(n => n.FirstName)
-                .Select(v =>
-                new
-                {
-                    v.FirstName,
-                    v.LastName,
-                    v.Business
-                }).Distinct().ToList();
+            //var ReturningVisitors = _context.Visitor.OrderBy(n => n.FirstName)
+            //    .Select(v =>
+            //    new
+            //    {
+            //        v.FirstName,
+            //        v.LastName,
+            //        v.Business
+            //    }).Distinct().ToList();
 
 
-            ViewData["ReturningVisitors"] = ReturningVisitors.Distinct()
+            //ViewData["ReturningVisitors"] = ReturningVisitors.Distinct()
+            //    .OrderBy(n => n.FirstName)
+            //    .Select(n => new SelectListItem
+            //    {
+            //        Value = n.FirstName + "," + n.LastName + "," + n.Business,
+            //        Text = n.FirstName + " " + n.LastName + " " + n.Business
+
+
+            //    }).ToList();
+
+
+            //loaded in the Dropdownbox
+            ViewData["ReturningVisitors"] = _context.Visitor.Distinct()
                 .OrderBy(n => n.FirstName)
                 .Select(n => new SelectListItem
                 {
-                    Value = n.FirstName + "," + n.LastName + "," + n.Business,
-                    Text = n.FirstName + " " + n.LastName + " " + n.Business
-
-
+                    Value = (n.Id + " " + n.StaffName.Id).ToString(),
+                    Text = n.FirstName.Trim() + " " + n.LastName.Trim() + " " + n.Business.Trim() + " " + n.StaffName.Name.Trim()
                 }).ToList();
-
-
 
 
             List<Visitor> VisitorLogOut = new List<Visitor>();
@@ -87,6 +80,25 @@ namespace VisitorManagement.Controllers
             ViewData["VisitorLogOut"] = VisitorLogOut;
 
             return View();
+        }
+
+        private List<SelectListItem> ListOfStaff(List<SelectListItem> Top5Staff)
+        {
+            Top5Staff.AddRange(_dataBaseCalls.Top5StaffVisitors()
+                .Select(n => new SelectListItem
+                {
+                    Value = n.Id.ToString(),
+                    Text = n.Name + " " + n.Department
+                }).ToList());
+
+            Top5Staff.AddRange(_context.StaffNames
+                .Select(n => new SelectListItem
+                {
+                    Value = n.Id.ToString(),
+                    Text = n.Name + " " + n.Department
+                }).ToList());
+
+            return Top5Staff;
         }
 
         public IActionResult About()
