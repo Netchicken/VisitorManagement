@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using VisitorManagement.Business;
 using VisitorManagement.Data;
 using VisitorManagement.Models;
@@ -95,9 +93,11 @@ namespace VisitorManagement.Controllers
 
             if (createVisitorVM.ReturningVisitor != null)
             {
+                //returning visitor has 2 numbers visitor ID and Staff ID
+                string[] RVID = createVisitorVM.ReturningVisitor.Split(" ");
 
                 //get the entry at that ID
-                int id = Convert.ToInt32(createVisitorVM.ReturningVisitor);
+                int id = Convert.ToInt32(RVID[0]);
                 //get the details of the returning visitor without the ID
                 Visitor newvisitor = (Visitor)_context.Visitor
                     .Where(v => v.Id == id)
@@ -105,11 +105,21 @@ namespace VisitorManagement.Controllers
                     .SingleOrDefault();
 
 
-                // Get the staff ID from the DB via the name
-                var StaffID = _context.StaffNames.Where(s => s.Name == newvisitor.StaffName.ToString()).Select(s => s.Id).SingleOrDefaultAsync();
+                int staffid = 0;
+                if (RVID[1] == String.Empty)
+                {
+                    // Get the staff ID from the DB via the name
+
+                    var StaffID = _context.StaffNames.Where(s => s.Name == newvisitor.StaffName.ToString()).Select(s => s.Id).SingleOrDefaultAsync();
+                    staffid = Convert.ToInt16(StaffID);
+                }
+                else
+                {
+                    //its a returning visitor just get the ID from the array
+                    staffid = Convert.ToInt16(RVID[1]);
+                }
 
                 //increment the staff count by 1
-                int staffid = Convert.ToInt16(StaffID);
                 _dataBaseCalls.IncrementStaffCount(staffid);
 
                 //reset the id to 0 to make it a new entry
