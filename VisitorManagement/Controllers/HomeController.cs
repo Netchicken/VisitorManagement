@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using VisitorManagement.Business;
 using VisitorManagement.Data;
 using VisitorManagement.Models;
@@ -42,36 +39,24 @@ namespace VisitorManagement.Controllers
             ViewData["Conditions"] = _textFileOperations.LoadConditionsForAcceptanceText();
 
 
-            //var ReturningVisitors = _context.Visitor.OrderBy(n => n.FirstName)
-            //    .Select(v =>
-            //    new
-            //    {
-            //        v.FirstName,
-            //        v.LastName,
-            //        v.Business
-            //    }).Distinct().ToList();
-
-
-            //ViewData["ReturningVisitors"] = ReturningVisitors.Distinct()
-            //    .OrderBy(n => n.FirstName)
-            //    .Select(n => new SelectListItem
-            //    {
-            //        Value = n.FirstName + "," + n.LastName + "," + n.Business,
-            //        Text = n.FirstName + " " + n.LastName + " " + n.Business
-
-
-            //    }).ToList();
-
-
             //loaded in the Dropdownbox
-            ViewData["ReturningVisitors"] = _context.Visitor.Distinct()
-                .OrderBy(n => n.FirstName)
-                .Select(n => new SelectListItem
-                {
-                    Value = (n.Id + " " + n.StaffName.Id).ToString(),
-                    Text = n.FirstName.Trim() + " " + n.LastName.Trim() + " " + n.Business.Trim() + " " + n.StaffName.Name.Trim()
-                }).ToList();
+            var AllVisitor = _context.Visitor
+                       .OrderBy(n => n.FirstName)
+                       .Select(n => new SelectListItem
+                       {
+                           Value = (n.Id + " " + n.StaffName.Id).ToString(),
+                           Text = (n.FirstName.Trim() + " " + n.LastName.Trim() + " " + n.Business.Trim() + " " + n.StaffName.Name.Trim())
+                       })
+              .ToList();
 
+
+
+            List<SelectListItem> DistAllVisitors = new List<SelectListItem>();
+
+            //get just the unique visitors and not repeated - create a new visitorcomaprer class that just compares the text fields and not the values.
+            DistAllVisitors.AddRange(AllVisitor.Distinct((new VisitorComparer())));
+
+            ViewData["ReturningVisitors"] = DistAllVisitors;
 
             List<Visitor> VisitorLogOut = new List<Visitor>();
 
