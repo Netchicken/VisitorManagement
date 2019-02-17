@@ -47,14 +47,14 @@ namespace VisitorManagement.Controllers
                            Value = (n.Id + " " + n.StaffName.Id).ToString(),
                            Text = (n.FirstName.Trim() + " " + n.LastName.Trim() + " " + n.Business.Trim() + " " + n.StaffName.Name.Trim())
                        })
-              .ToList();
+               .ToList();
 
 
 
             List<SelectListItem> DistAllVisitors = new List<SelectListItem>();
 
-            //get just the unique visitors and not repeated - create a new visitorcomaprer class that just compares the text fields and not the values.
-            DistAllVisitors.AddRange(AllVisitor.Distinct((new VisitorComparer())));
+            //get just the unique visitors and not repeated because the Value is unique I needed only the Text to compare with. - create a new visitorcomparer class that just compares the text fields and not the values. https://blogs.msdn.microsoft.com/kaevans/2010/09/02/fun-with-linq-and-distinct/
+            DistAllVisitors.AddRange(AllVisitor.Distinct(new VisitorComparer()));
 
             ViewData["ReturningVisitors"] = DistAllVisitors;
 

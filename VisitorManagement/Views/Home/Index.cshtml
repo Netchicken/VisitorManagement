@@ -17,7 +17,6 @@
 <!-- Services Section -->
 <div id="services" class="text-center">
     <div class="container">
-
         @await Html.PartialAsync("~/Views/Visitors/Index.cshtml")
         <div class="col-md-8 col-md-offset-2 section-title">
             <h2>Read the Conditions</h2>
@@ -42,7 +41,6 @@
 <div class="container text-center">
     @await Html.PartialAsync("~/Views/Visitors/Create.cshtml")
 </div>
-
 @section Scripts {
     <script type="text/javascript">
 
@@ -74,12 +72,13 @@
             //get the name of the returned person selected
             var name = $("#NameSelect  option:selected").text();
 
-            if (name != null) {
+            if (name !== null) {
                 //   alert(name);
 
                 //split the name up to an array
                 var text = name.split(" ");
 
+                //push it back to the text boxes
                 $('#FirstName').val(text[0]);
                 $('#LastName').val(text[1]);
                 $('#Business').val(text[2]);
